@@ -2,7 +2,7 @@
 title: "Reproducible Reseach project 1"
 author: "Rajeev"
 date: "July 6, 2018"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
@@ -24,7 +24,7 @@ library("magrittr")
 
 #reading files into R environment
 ```{r, message=FALSE}
-setwd("C:/Data Science/Reproducible Research")
+setwd("C:/users/u027332/Reproducible-Research")
 
 if(!file.exists("activity.csv")){
 
