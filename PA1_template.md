@@ -146,30 +146,28 @@ print("median value of the steps:")
     ## [1] 10765
 
 ``` r
-png("plot-total-steps.png")
+#png("plot-total-steps.png")
 hist(agg_table$Sum_day, breaks=5, xlab="Steps per day", main = "Total number of steps per day")
-dev.off()
 ```
 
-    ## png 
-    ##   2
+![](PA1_template_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ``` r
+#dev.off()
 #mean of the steps by interval
 agg_meanbystep <- aggregate(activity_NNA$steps ~ activity_NNA$interval, FUN=mean)
 colnames(agg_meanbystep)<-c("interval","mean_interval")
 agg_meanbystep$mean_interval<-round(agg_meanbystep$mean_interval,digits=2)
-png("plot-average-activity.png")
+#png("plot-average-activity.png")
 plot(agg_meanbystep$interval,agg_meanbystep$mean_interval, type = 'l',
      xlab="Intervals",ylab="Avg number of steps per interval", 
      col="red",main="Average Daily activity pattern")
-dev.off()
 ```
 
-    ## png 
-    ##   2
+![](PA1_template_files/figure-markdown_github/unnamed-chunk-4-2.png)
 
 ``` r
+#dev.off()
 agg_max<-agg_meanbystep[agg_meanbystep$mean_interval==max(agg_meanbystep$mean_interval),]
 agg_max$interval
 ```
@@ -191,15 +189,17 @@ replace_NA<-activity_d %>%
 agg_table_NA <- aggregate(replace_NA$steps ~ replace_NA$date, FUN=sum)
 colnames(agg_table_NA)<- c("Date", "Sum_day")
 
-png("plot-hist-imputed-data.png")
+#png("plot-hist-imputed-data.png")
 hist(agg_table_NA$Sum_day, breaks=5, xlab="Steps", main = "Total Steps per Day with NAs Fixed", col="Black")
 hist(agg_table$Sum_day, breaks=5, xlab="Steps", main = "Total Steps per Day with NAs Fixed", col="Grey", add=T)
 legend("topright", c("Imputed Data", "Non-NA Data"), fill=c("black", "grey") )
-dev.off()
 ```
 
-    ## png 
-    ##   2
+![](PA1_template_files/figure-markdown_github/unnamed-chunk-5-1.png)
+
+``` r
+#dev.off()
+```
 
 Timeseries plot for weekday and weekend.
 ========================================
@@ -210,13 +210,14 @@ agg_meanbysnd <- aggregate(activity_d$steps ~ activity_d$interval+activity_d$Day
 
 colnames(agg_meanbysnd)<- c("interval", "DayCategory","mean")
 
-png("plot-weekend-weekdays-pattern.png")
+#png("plot-weekend-weekdays-pattern.png")
 xyplot(mean~interval|DayCategory, data=agg_meanbysnd, type="l",  layout = c(1,2),
        main="Averaged steps across all weekday days or weekend days", 
        ylab="Average Number of Steps", xlab="Interval")
-
-dev.off()
 ```
 
-    ## png 
-    ##   2
+![](PA1_template_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+``` r
+#dev.off()
+```
